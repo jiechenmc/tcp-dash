@@ -8,6 +8,7 @@
 #include <linux/in.h>
 #include <asm-generic/types.h>
 #include <linux/dns_resolver.h>
+#include <bpf/bpf_helpers.h>
 
 #define bpf_htons(x) ((__be16)___constant_swab16((x)))
 #define bpf_ntohs(x) ((__be16)___constant_swab16((x)))
@@ -70,9 +71,16 @@ int count_packets(struct xdp_md *ctx) {
 
     // Do work with TCP packet
     bpf_printk("<%pI4, %d, %pI4, %d>\n", &iph->saddr, bpf_ntohs(tcph->source), &iph->daddr, bpf_ntohs(tcph->dest));
-    bpf_printk("Window Size: %d\n", &iph->saddr, bpf_ntohs(tcph->window));
+    bpf_printk("Window Size: %d\n", bpf_ntohs(tcph->window));
 
     return XDP_PASS; 
 }
 
+SEC("kfunc/tcp_slow_start")
+int bpf_prog1(struct bpf_sock *sk) {
+    // For demonstration, print the congestion window and the current state
+    bpf_printk("tcp_slow_start called\n");
+
+    return 0;
+}
 char __license[] SEC("license") = "Dual MIT/GPL";

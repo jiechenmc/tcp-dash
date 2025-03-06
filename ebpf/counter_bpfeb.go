@@ -54,6 +54,7 @@ type counterSpecs struct {
 //
 // It can be passed ebpf.CollectionSpec.Assign.
 type counterProgramSpecs struct {
+	BpfProg1     *ebpf.ProgramSpec `ebpf:"bpf_prog1"`
 	CountPackets *ebpf.ProgramSpec `ebpf:"count_packets"`
 }
 
@@ -109,11 +110,13 @@ type counterVariables struct {
 //
 // It can be passed to loadCounterObjects or ebpf.CollectionSpec.LoadAndAssign.
 type counterPrograms struct {
+	BpfProg1     *ebpf.Program `ebpf:"bpf_prog1"`
 	CountPackets *ebpf.Program `ebpf:"count_packets"`
 }
 
 func (p *counterPrograms) Close() error {
 	return _CounterClose(
+		p.BpfProg1,
 		p.CountPackets,
 	)
 }

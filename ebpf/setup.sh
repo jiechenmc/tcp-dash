@@ -6,3 +6,4 @@ sudo apt-get update && \
     wget gcc-multilib linux-headers-generic
 
 wget https://go.dev/dl/go1.24.1.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.24.1.linux-amd64.tar.gz
+rm go1.24.1.linux-amd64.tar.gz
