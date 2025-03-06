@@ -69,8 +69,8 @@ int count_packets(struct xdp_md *ctx) {
 
 
     // Do work with TCP packet
-    bpf_printk("RECV FROM: <%pI4, %d, %pI4, %d>\n", &iph->saddr, bpf_ntohs(tcph->source), &iph->daddr, bpf_ntohs(tcph->dest));
-
+    bpf_printk("<%pI4, %d, %pI4, %d>\n", &iph->saddr, bpf_ntohs(tcph->source), &iph->daddr, bpf_ntohs(tcph->dest));
+    bpf_printk("Window Size: %d\n", &iph->saddr, bpf_ntohs(tcph->window));
 
     return XDP_PASS; 
 }
