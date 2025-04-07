@@ -1,0 +1,50 @@
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":1.0889999866485596,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":3.0859999656677246,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":5.0929999351501465,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":7.0940001010894775,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":9.085999965667725,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":11.09500002861023,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":13.091000080108643,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":15.092999935150146,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":17.088000059127808,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":19.088000059127808,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":21.085999965667725,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":23.09500002861023,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":25.091000080108643,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":27.09999990463257,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":29.082000017166138,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":31.082000017166138,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":33.092000007629395,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":35.085999965667725,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":37.085999965667725,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":39.08800005912781,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":41.08400011062622,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":43.08899998664856,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":45.08699989318848,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":47.098000049591064,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":49.08400011062622,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":51.09599995613098,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":53.09699988365173,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":55.09299993515015,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":57.08999991416931,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":59.08800005912781,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":61.085999965667725,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":63.08400011062622,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":65.08500003814697,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":67.09100008010864,"metricsValue":14932}
+{"testName":"Dash JavaScript Player","metricsName":"bitrate","metricsTime":69.52500009536743,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":1.1140000820159912,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":3.114000082015991,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":5.114000082015991,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":7.114000082015991,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":9.114000082015991,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":11.114000082015991,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":13.114000082015991,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":15.114000082015991,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":17.11400008201599,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":19.11400008201599,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":21.11400008201599,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":23.11400008201599,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":25.11400008201599,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":27.11400008201599,"metricsValue":14932}
+{"testName":"Test1","metricsName":"bitrate","metricsTime":29.11400008201599,"metricsValue":14932}
