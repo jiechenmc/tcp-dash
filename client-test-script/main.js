@@ -20,6 +20,7 @@ wss.on("connection", function connection(ws) {
 });
 
 runTest(
+  "http://localhost:3000/samples/dash-if-reference-player/index.html",
   "Test1",
   "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
   30

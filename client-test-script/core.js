@@ -1,9 +1,6 @@
 const { chromium } = require("playwright");
 
-const playerURL =
-  "http://localhost:3000/samples/dash-if-reference-player/index.html";
-
-const runTest = async (testName, videoManifestURL, duration) => {
+const runTest = async (playerURL, testName, videoManifestURL, duration) => {
   // Setup
   const browser = await chromium.launch({ channel: "chrome", headless: false });
   const context = await browser.newContext();
