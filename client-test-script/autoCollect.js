@@ -1,8 +1,8 @@
-const { chromium } = require("playwright");
+import { chromium } from "playwright";
 
 const runTest = async (playerURL, testName, videoManifestURL, duration) => {
   // Setup
-  const browser = await chromium.launch({ channel: "chrome", headless: false });
+  const browser = await chromium.launch({ channel: "chrome", headless: true });
   const context = await browser.newContext();
   const page = await context.newPage();
 
@@ -34,4 +34,11 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
   }, duration * 1000 + 1000);
 };
 
-exports.runTest = runTest;
+const args = process.argv.slice(2);
+const [playerURL, testName, videoManifestURL, duration] = args;
+
+if (args.length == 4) {
+  runTest(playerURL, testName, videoManifestURL, duration);
+}
+
+export default runTest;
