@@ -23,6 +23,7 @@ services:
     image: nginx
     ports:
       - 3443:8443/udp
+      - 3443:8443/tcp
     volumes:
       - ./video-server/videos:/usr/share/nginx/html/media
       - ./video-server/http3.conf:/etc/nginx/conf.d/user.conf
