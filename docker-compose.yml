@@ -1,20 +1,35 @@
 services:
-  nginx:
+  http1:
     image: nginx
     ports:
       - 80:80
     volumes:
       - ./video-server/videos:/usr/share/nginx/html/media
-      - ./video-server/user.conf:/etc/nginx/user_conf.d/user.conf
+      - ./video-server/http1.conf:/etc/nginx/user_conf.d/user.conf
       - ./video-server/nginx.conf:/etc/nginx/nginx.conf
       - nginx_secrets:/etc/letsencrypt
-  mongo:
-    image: mongo
+  http2:
+    image: nginx
     ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      - 443:443
+    volumes:
+      - ./video-server/videos:/usr/share/nginx/html/media
+      - ./video-server/http2.conf:/etc/nginx/user_conf.d/user.conf
+      - ./video-server/nginx.conf:/etc/nginx/nginx.conf
+      - ./video-server/localhost.crt:/etc/nginx/ssl/localhost.crt
+      - ./video-server/localhost.key:/etc/nginx/ssl/localhost.key
+      - nginx_secrets:/etc/letsencrypt
+  http3:
+    image: nginx
+    ports:
+      - 8443:8443
+    volumes:
+      - ./video-server/videos:/usr/share/nginx/html/media
+      - ./video-server/http3.conf:/etc/nginx/user_conf.d/user.conf
+      - ./video-server/nginx.conf:/etc/nginx/nginx.conf
+      - ./video-server/localhost.crt:/etc/nginx/ssl/localhost.crt
+      - ./video-server/localhost.key:/etc/nginx/ssl/localhost.key
+      - nginx_secrets:/etc/letsencrypt
 
 volumes:
   nginx_secrets:
