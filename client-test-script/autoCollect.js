@@ -2,7 +2,11 @@ import { chromium } from "playwright";
 
 const runTest = async (playerURL, testName, videoManifestURL, duration) => {
   // Setup
-  const browser = await chromium.launch({ channel: "chrome", headless: true });
+  const browser = await chromium.launch({
+    channel: "chrome",
+    headless: false,
+    args: ["--origin-to-force-quic-on=localhost:8443"],
+  });
   const context = await browser.newContext();
   const page = await context.newPage();
 

@@ -63,25 +63,7 @@ const tests = [
     playerURL: HTTP1_PLAYER,
     testName: "Very Original Name",
     videoManifestURL: BIG_VIDEO,
-    duration: 2,
-  },
-  {
-    playerURL: HTTP1_PLAYER,
-    testName: "Very Original Name",
-    videoManifestURL: BIG_VIDEO,
-    duration: 2,
-  },
-  {
-    playerURL: HTTP1_PLAYER,
-    testName: "Very Original Name",
-    videoManifestURL: BIG_VIDEO,
-    duration: 2,
-  },
-  {
-    playerURL: HTTP1_PLAYER,
-    testName: "Very Original Name",
-    videoManifestURL: BIG_VIDEO,
-    duration: 2,
+    duration: 30,
   },
 ];
 
