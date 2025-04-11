@@ -6,7 +6,7 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
     channel: "chrome",
     headless: false,
     args: [
-      "--origin-to-force-quic-on=localhost:443",
+      "--origin-to-force-quic-on=localhost:8443",
       "--enable-quic",
       "--ignore-certificate-errors",
       "--ignore-certificate-errors-spki-list",
@@ -35,12 +35,12 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
 
   await loadVideoButton.click();
 
-  // console.log(`Waiting ${duration} seconds before closing...`);
-  // setTimeout(async () => {
-  //   await await context.close();
-  //   await browser.close();
-  //   process.exit(0);
-  // }, duration * 1000 + 1000);
+  console.log(`Waiting ${duration} seconds before closing...`);
+  setTimeout(async () => {
+    await await context.close();
+    await browser.close();
+    process.exit(0);
+  }, duration * 1000 + 1000);
 };
 
 const args = process.argv.slice(2);
