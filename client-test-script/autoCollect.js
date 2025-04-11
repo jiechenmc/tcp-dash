@@ -5,12 +5,7 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
   const browser = await chromium.launch({
     channel: "chrome",
     headless: false,
-    args: [
-      "--origin-to-force-quic-on=localhost:8443",
-      "--enable-quic",
-      "--ignore-certificate-errors",
-      "--ignore-certificate-errors-spki-list",
-    ],
+    args: ["--origin-to-force-quic-on=int.dhinak.net:8443"],
   });
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -35,12 +30,12 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
 
   await loadVideoButton.click();
 
-  console.log(`Waiting ${duration} seconds before closing...`);
-  setTimeout(async () => {
-    await await context.close();
-    await browser.close();
-    process.exit(0);
-  }, duration * 1000 + 1000);
+  // console.log(`Waiting ${duration} seconds before closing...`);
+  // setTimeout(async () => {
+  //   await await context.close();
+  //   await browser.close();
+  //   process.exit(0);
+  // }, duration * 1000 + 1000);
 };
 
 const args = process.argv.slice(2);
