@@ -1,0 +1,18 @@
+
+# API and dashboard configuration
+api:
+  insecure: true
+
+
+entryPoints:
+  web:
+    address: ":80"
+
+  websecure:
+    address: ":443"
+    http3: {}
+
+tls:
+  certificates:
+    - certFile: /etc/traefik/ssl/localhost.crt
+      keyFile: /etc/traefik/ssl/localhost.key

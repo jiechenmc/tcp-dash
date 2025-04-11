@@ -31,6 +31,18 @@ services:
       - ./video-server/localhost.crt:/etc/nginx/ssl/localhost.crt
       - ./video-server/localhost.key:/etc/nginx/ssl/localhost.key
 
+  http3-traefik:
+    image: traefik
+    ports:
+      - 9080:80
+      - 9443:443/tcp
+      - 9443:443/udp
+      - 8080:8080
+    volumes:
+      - ./video-server/traefik.yml:/etc/traefik/traefik.yml
+      - ./video-server/localhost.crt:/etc/traefik/ssl/localhost.crt
+      - ./video-server/localhost.key:/etc/traefik/ssl/localhost.key
+      - /var/run/docker.sock:/var/run/docker.sock
   dash:
     build:
       context: ./dash.js
