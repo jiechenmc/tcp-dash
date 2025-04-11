@@ -28,3 +28,4 @@ go.work.sum
 
 *.crt
 *.key
+out.db
