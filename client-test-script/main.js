@@ -53,22 +53,21 @@ wss.on("connection", function connection(ws) {
 
 // RUN TESTS HERE
 
-const HTTP1_PLAYER =
+// The player is HTTP1.1
+const VIDEO_PLAYER =
   "http://localhost:3000/samples/dash-if-reference-player/index.html";
 
-const HTTP2_PLAYER =
-  "http://localhost:3000/samples/dash-if-reference-player/index.html";
+const HTTP1_SERVER = "https://int.dhinak.net:1443";
 
-const HTTP3_PLAYER =
-  "http://localhost:3000/samples/dash-if-reference-player/index.html";
+const HTTP2_SERVER = "https://int.dhinak.net:2443";
 
-const BIG_VIDEO = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd";
+const HTTP3_SERVER = "https://int.dhinak.net:8443";
 
 const tests = [
   {
-    playerURL: HTTP1_PLAYER,
+    playerURL: VIDEO_PLAYER,
     testName: "Very Original Name",
-    videoManifestURL: BIG_VIDEO,
+    videoManifestURL: `${HTTP1_SERVER}/media/test_output.mpd`,
     duration: 30,
   },
 ];

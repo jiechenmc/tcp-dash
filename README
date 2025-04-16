@@ -1,9 +1,21 @@
+# Getting Started
+
+If the repo was not cloned with --recursive, you have to:
+
+```bash
+git submodule init
+git module
+```
+
+
 # Running The Script
-1. Put the manifests in `./video-server/videos`
+1. Put the certs and keys in `./video-server/localhost.crt` and  `./video-server/localhost.key`
+1. Put the video manifests in `./video-server/videos`
 2. Run `sudo docker compose up --build -d`
 - This will run a `HTTP/1.1` NGINX server on PORT `1443`
 - This will run a `HTTP/2` NGINX server on PORT `2443`
 - This will run a `HTTP/3` NGINX server on PORT `8443`
+- This will run a `dash.js` client on PORT `3000`
 
 3. Configure the script in `./client-test-script/main.js`
 4. Run `node ./client-test-script/main.js prune`
