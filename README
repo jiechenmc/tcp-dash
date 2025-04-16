@@ -1,0 +1,11 @@
+# Running The Script
+1. Put the manifests in `./video-server/videos`
+2. Run `sudo docker compose up --build -d`
+- This will run a `HTTP/1.1` NGINX server on PORT `1443`
+- This will run a `HTTP/2` NGINX server on PORT `2443`
+- This will run a `HTTP/3` NGINX server on PORT `8443`
+
+3. Configure the script in `./client-test-script/main.js`
+4. Run `node ./client-test-script/main.js prune`
+- The prune option will wipe the db
+- Use Node.js version 23+

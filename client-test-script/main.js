@@ -56,6 +56,12 @@ wss.on("connection", function connection(ws) {
 const HTTP1_PLAYER =
   "http://localhost:3000/samples/dash-if-reference-player/index.html";
 
+const HTTP2_PLAYER =
+  "http://localhost:3000/samples/dash-if-reference-player/index.html";
+
+const HTTP3_PLAYER =
+  "http://localhost:3000/samples/dash-if-reference-player/index.html";
+
 const BIG_VIDEO = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd";
 
 const tests = [
