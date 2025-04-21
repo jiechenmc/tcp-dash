@@ -25,3 +25,17 @@ git module
 - It is not headless nor will it automatically close rn for ease of development
 
 Note: You can access the dash.js instance directly on PORT 3000 without the client script, but that will not collect the metrics into `out.db`.
+
+# Switching ABR Algorithms
+
+We currently have 6 algorithms available in their respective branches. Do `git switch <branch_name>` and the dash.js instance will automatically reload with that ABR algorithm enabled.
+
+The 6 available and their respective branches are detailed below:
+
+BRANCH -> Algorithm
+1. development -> ABR Dynamic
+2. BOLA -> ABR Bola
+3. FESTIVE -> ABR Festive
+4. L2A -> ABR L2A
+5. RB -> ABR RB
+6. Throughput -> ABR Throughput
