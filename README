@@ -7,17 +7,21 @@ git submodule init
 git module
 ```
 
-
-# Running The Script
+# Set Up Video Servers
 1. Put the certs and keys in `./video-server/localhost.crt` and  `./video-server/localhost.key`
 1. Put the video manifests in `./video-server/videos`
 2. Run `sudo docker compose up --build -d`
 - This will run a `HTTP/1.1` NGINX server on PORT `1443`
 - This will run a `HTTP/2` NGINX server on PORT `2443`
 - This will run a `HTTP/3` NGINX server on PORT `8443`
-- This will run a `dash.js` client on PORT `3000`
+- This will run `dash.js` on PORT `3000`
 
-3. Configure the script in `./client-test-script/main.js`
-4. Run `node ./client-test-script/main.js prune`
+# Set Up Client Script
+1. Configure the script in `./client-test-script/main.js`
+2. Run `node ./client-test-script/main.js prune`
 - The prune option will wipe the db
 - Use Node.js version 23+
+3. This will spawn a browser that will collect metrics and store to `out.db`.
+- It is not headless nor will it automatically close rn for ease of development
+
+Note: You can access the dash.js instance directly on PORT 3000 without the client script, but that will not collect the metrics into `out.db`.

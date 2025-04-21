@@ -39,7 +39,7 @@ wss.on("connection", function connection(ws) {
     // We only care about bitrate and stall rate
     if (
       dataPoint["metricsName"] === "bitrate" ||
-      dataPoint["metricsName"] === "stallrate"
+      dataPoint["metricsName"] === "stallRate"
     ) {
       insert.run(
         dataPoint["testName"],

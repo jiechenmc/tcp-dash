@@ -30,12 +30,15 @@ services:
       - ./video-server/nginx.conf:/etc/nginx/nginx.conf
       - ./video-server/localhost.crt:/etc/nginx/ssl/localhost.crt
       - ./video-server/localhost.key:/etc/nginx/ssl/localhost.key
+      
 
   dash:
     build:
       context: ./dash.js
+    volumes:
+      - ./dash.js:/app
     ports:
       - 3000:3000
-    network_mode: host
+    # network_mode: host
 volumes:
   nginx_secrets:
