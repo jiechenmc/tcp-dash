@@ -8,7 +8,7 @@ git module
 ```
 
 # Set Up Video Servers
-1. Put the certs and keys in `./video-server/localhost.crt` and  `./video-server/localhost.key`
+1. Put the cert and key file in `./video-server/localhost.crt` and  `./video-server/localhost.key`
 1. Put the video manifests in `./video-server/videos`
 2. Run `sudo docker compose up --build -d`
 - This will run a `HTTP/1.1` NGINX server on PORT `1443`
