@@ -8,7 +8,7 @@ git module
 ```
 
 # Set Up Video Servers
-1. Put the cert and key file in `./video-server/localhost.crt` and  `./video-server/localhost.key`
+1. Put the cert and key file in `./video-server` and name them `localhost.crt` and `localhost.key` respectively.
 2. Put the video manifests in `./video-server/videos`
 3. Run `cd dash.js && npm i && cd ..`
 4. Run `sudo docker compose up --build -d`
