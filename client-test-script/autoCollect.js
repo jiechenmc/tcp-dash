@@ -30,12 +30,12 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
 
   await loadVideoButton.click();
 
-  // console.log(`Waiting ${duration} seconds before closing...`);
-  // setTimeout(async () => {
-  //   await await context.close();
-  //   await browser.close();
-  //   process.exit(0);
-  // }, duration * 1000 + 1000);
+  console.log(`Waiting ${duration} seconds before closing...`);
+  setTimeout(async () => {
+    await await context.close();
+    await browser.close();
+    process.exit(0);
+  }, duration * 1000 + 1000);
 };
 
 const args = process.argv.slice(2);

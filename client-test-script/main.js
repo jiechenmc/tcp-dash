@@ -19,13 +19,14 @@ if (args.length > 0) {
 database.exec(`CREATE TABLE IF NOT EXISTS data(
   key INTEGER PRIMARY KEY AUTOINCREMENT,
   testName TEXT,
+  timestamp TEXT,
   metricsName TEXT,
   metricsTime TEXT,
   metricsValue TEXT
 );`);
 
 const insert = database.prepare(
-  "INSERT INTO data (testName, metricsName, metricsTime, metricsValue) VALUES (?, ?, ?, ?)"
+  "INSERT INTO data (testName, timestamp, metricsName, metricsTime, metricsValue) VALUES (?, ?, ?, ?, ?)"
 );
 
 const port = 6789;
@@ -43,6 +44,7 @@ wss.on("connection", function connection(ws) {
     ) {
       insert.run(
         dataPoint["testName"],
+        new Date().toLocaleString(),
         dataPoint["metricsName"],
         dataPoint["metricsTime"],
         dataPoint["metricsValue"]
