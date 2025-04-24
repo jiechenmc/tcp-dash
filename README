@@ -23,7 +23,6 @@ git module
 - The prune option will wipe the db
 - Use Node.js version 23+
 3. This will spawn a browser that will collect metrics and store to `out.db`.
-- It is not headless nor will it automatically close rn for ease of development
 
 Note: You can access the dash.js instance directly on PORT 3000 without the client script, but that will not collect the metrics into `out.db`.
 
@@ -39,4 +38,4 @@ BRANCH -> Algorithm
 3. FESTIVE -> ABR Festive
 4. L2A -> ABR L2A
 5. RB -> ABR RB
-6. Throughput -> ABR Throughput
+6. THROUGHPUT -> ABR Throughput
