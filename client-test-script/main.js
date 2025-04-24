@@ -68,8 +68,14 @@ const HTTP3_SERVER = "https://int.dhinak.net:8443";
 const tests = [
   {
     playerURL: VIDEO_PLAYER,
-    testName: "Very Original Name",
+    testName: "HTTP/1.1 Test",
     videoManifestURL: `${HTTP1_SERVER}/media/test_output.mpd`,
+    duration: 30,
+  },
+  {
+    playerURL: VIDEO_PLAYER,
+    testName: "HTTP/2 Test",
+    videoManifestURL: `${HTTP2_SERVER}/media/test_output.mpd`,
     duration: 30,
   },
 ];
