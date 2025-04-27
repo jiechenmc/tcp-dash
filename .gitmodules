@@ -1,3 +1,23 @@
 [submodule "dash.js"]
 	path = dash.js
 	url = https://github.com/Darim7/dash.js.git
+[submodule "dash.js-bola"]
+	path = dash.js-bola
+	url = https://github.com/Darim7/dash.js.git
+	branch = BOLA
+[submodule "dash.js-festive"]
+	path = dash.js-festive
+	url = https://github.com/Darim7/dash.js.git
+	branch = FESTIVE
+[submodule "dash.js-l2a"]
+	path = dash.js-l2a
+	url = https://github.com/Darim7/dash.js.git
+	branch = L2A
+[submodule "dash.js-rb"]
+	path = dash.js-rb
+	url = https://github.com/Darim7/dash.js.git
+	branch = RB
+[submodule "dash.js-throughput"]
+	path = dash.js-throughput
+	url = https://github.com/Darim7/dash.js.git
+	branch = THROUGHPUT
