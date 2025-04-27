@@ -111,7 +111,7 @@ let mutex = false;
 
 function checkIfAllExited() {
   if (remainingProcesses === 0) {
-    console.log("All processes have exited.");
+    bar.log("All processes have exited.\n");
     bar.stop();
     process.exit(0); // exit process when all tests are done
   }
@@ -133,13 +133,15 @@ async function runTestSync(test) {
   ]);
 
   collector.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
+    bar.log(`stdout: ${data}\n`);
+    bar.updateETA();
   });
   collector.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
+    bar.error(`stderr: ${data}\n`);
+    bar.updateETA();
   });
   collector.on("close", (code) => {
-    console.log(`child process exited with code ${code}`);
+    bar.log(`child process exited with code ${code}\n`);
     bar.increment();
     remainingProcesses--;
     mutex = false; // Release the mutex when the process finishes
