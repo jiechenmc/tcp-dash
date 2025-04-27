@@ -1,6 +1,8 @@
 import { chromium } from "playwright";
 
 const runTest = async (playerURL, testName, videoManifestURL, duration) => {
+  console.log(`Running test: ${testName}`);
+  
   // Setup
   const browser = await chromium.launch({
     channel: "chrome",
