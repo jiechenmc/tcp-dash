@@ -24,6 +24,8 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
 
   await videoManifestInput.fill(videoManifestURL);
 
+  await new Promise(r => setTimeout(r, 3000));
+
   const loadVideoButton = await page.locator(
     "body > div.container > div:nth-child(2) > div.input-group > span > button.btn.btn-primary"
   );
