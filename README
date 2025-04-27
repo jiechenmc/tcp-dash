@@ -4,7 +4,7 @@ If the repo was not cloned with --recursive, you have to:
 
 ```bash
 git submodule init
-git module
+git submodule update
 ```
 
 # Set Up Video Servers
