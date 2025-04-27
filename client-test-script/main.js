@@ -2,7 +2,7 @@ import { WebSocketServer } from "ws";
 
 import { DatabaseSync } from "node:sqlite";
 import { spawn } from "node:child_process";
-import { SingleBar, Presets } from "cli-progress";
+import { MultiBar, Presets } from "cli-progress";
 
 const database = new DatabaseSync("out.db");
 
@@ -77,7 +77,7 @@ const HTTP2_SERVER = "https://int.dhinak.net:2443";
 const HTTP3_SERVER = "https://int.dhinak.net:8443";
 
 const tests = [];
-const bar = new SingleBar({}, Presets.shades_classic);
+const multibar = new MultiBar({}, Presets.shades_classic);
 
 for (let i = 0; i < ALGORITHMS.length; i++) {
   const algorithm = ALGORITHMS[i];
@@ -102,7 +102,7 @@ for (let i = 0; i < ALGORITHMS.length; i++) {
     duration: 220,
   });
 }
-bar.start(tests.length, 0);
+const bar = multibar.create(tests.length, 0);
 
 // END
 
@@ -111,8 +111,8 @@ let mutex = false;
 
 function checkIfAllExited() {
   if (remainingProcesses === 0) {
-    bar.log("All processes have exited.\n");
-    bar.stop();
+    multibar.log("All processes have exited.\n");
+    multibar.stop();
     process.exit(0); // exit process when all tests are done
   }
 }
@@ -133,15 +133,15 @@ async function runTestSync(test) {
   ]);
 
   collector.stdout.on("data", (data) => {
-    bar.log(`stdout: ${data}\n`);
+    multibar.log(`stdout: ${data}\n`);
     bar.updateETA();
   });
   collector.stderr.on("data", (data) => {
-    bar.error(`stderr: ${data}\n`);
+    multibar.log(`stderr: ${data}\n`);
     bar.updateETA();
   });
   collector.on("close", (code) => {
-    bar.log(`child process exited with code ${code}\n`);
+    multibar.log(`child process exited with code ${code}\n`);
     bar.increment();
     remainingProcesses--;
     mutex = false; // Release the mutex when the process finishes
