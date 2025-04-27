@@ -8,11 +8,16 @@ const database = new DatabaseSync("out.db");
 const args = process.argv.slice(2);
 
 // Check for specific arguments
+let title = null;
 if (args.length > 0) {
-  console.log("First argument:", args[0]);
-
-  if (args[0] === "prune") {
+  if (args.some((arg) => arg === "prune")) {
+    console.log("Pruning database...");
     database.exec("DROP TABLE IF EXISTS data");
+    args.splice(args.indexOf("prune"), 1);
+  }
+
+  if (args.length > 0) {
+    title = args[0];
   }
 }
 
@@ -57,6 +62,10 @@ wss.on("connection", function connection(ws) {
 // RUN TESTS HERE
 
 // The player is HTTP1.1
+
+const ALGORITHM_BASE_PORT = 3000;
+const ALGORITHMS = ["Dynamic", "Bola", "Festive", "L2A", "RB", "Throughput"];
+
 const VIDEO_PLAYER =
   "http://int.dhinak.net:3000/samples/dash-if-reference-player/index.html";
 
@@ -66,26 +75,31 @@ const HTTP2_SERVER = "https://int.dhinak.net:2443";
 
 const HTTP3_SERVER = "https://int.dhinak.net:8443";
 
-const tests = [
-  {
-    playerURL: VIDEO_PLAYER,
-    testName: "TheEmptinessMachine - HTTP/1.1",
+const tests = [];
+
+for (let i = 0; i < ALGORITHMS.length; i++) {
+  const algorithm = ALGORITHMS[i];
+  const port = ALGORITHM_BASE_PORT + i;
+
+  tests.push({
+    playerURL: `http://int.dhinak.net:${port}/samples/dash-if-reference-player/index.html`,
+    testName: `TheEmptinessMachine - ${title} - ${algorithm} - HTTP/1.1`,
     videoManifestURL: `${HTTP1_SERVER}/media/TheEmptinessMachine.mp4_output.mpd`,
     duration: 220,
-  },
-  {
-    playerURL: VIDEO_PLAYER,
-    testName: "TheEmptinessMachine - HTTP/2",
+  });
+  tests.push({
+    playerURL: `http://int.dhinak.net:${port}/samples/dash-if-reference-player/index.html`,
+    testName: `TheEmptinessMachine - ${title} - ${algorithm} - HTTP/2`,
     videoManifestURL: `${HTTP2_SERVER}/media/TheEmptinessMachine.mp4_output.mpd`,
     duration: 220,
-  },
-  {
-    playerURL: VIDEO_PLAYER,
-    testName: "TheEmptinessMachine - HTTP/3",
+  });
+  tests.push({
+    playerURL: `http://int.dhinak.net:${port}/samples/dash-if-reference-player/index.html`,
+    testName: `TheEmptinessMachine - ${title} - ${algorithm} - HTTP/3`,
     videoManifestURL: `${HTTP3_SERVER}/media/TheEmptinessMachine.mp4_output.mpd`,
     duration: 220,
-  },
-];
+  });
+}
 
 // END
 

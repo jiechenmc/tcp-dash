@@ -35,10 +35,33 @@ services:
   dash:
     build:
       context: ./dash.js
-    volumes:
-      - ./dash.js:/app
     ports:
       - 3000:3000
+  dash-bola:
+    build:
+      context: ./dash.js-bola
+    ports:
+      - 3001:3000
+  dash-festive:
+    build:
+      context: ./dash.js-festive
+    ports:
+      - 3002:3000
+  dash-l2a:
+    build:
+      context: ./dash.js-l2a
+    ports:
+      - 3003:3000
+  dash-rb:
+    build:
+      context: ./dash.js-rb
+    ports:
+      - 3004:3000
+  dash-throughput:
+    build:
+      context: ./dash.js-throughput
+    ports:
+      - 3005:3000
     # network_mode: host
 volumes:
   nginx_secrets:

@@ -12,3 +12,5 @@ for branch in "${sub_branches[@]}"; do
 done
 
 cd ..
+
+git submodule update --remote
