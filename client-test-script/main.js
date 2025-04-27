@@ -57,7 +57,7 @@ wss.on("connection", function connection(ws) {
 
 // The player is HTTP1.1
 const VIDEO_PLAYER =
-  "http://localhost:3000/samples/dash-if-reference-player/index.html";
+  "http://int.dhinak,net:3000/samples/dash-if-reference-player/index.html";
 
 const HTTP1_SERVER = "https://int.dhinak.net:1443";
 
@@ -68,15 +68,21 @@ const HTTP3_SERVER = "https://int.dhinak.net:8443";
 const tests = [
   {
     playerURL: VIDEO_PLAYER,
-    testName: "HTTP/1.1 Test",
-    videoManifestURL: `${HTTP1_SERVER}/media/test_output.mpd`,
-    duration: 30,
+    testName: "TheEmptinessMachine - HTTP/1.1",
+    videoManifestURL: `${HTTP1_SERVER}/media/TheEmptinessMachine.mp4_output.mpd`,
+    duration: 220,
   },
   {
     playerURL: VIDEO_PLAYER,
-    testName: "HTTP/2 Test",
-    videoManifestURL: `${HTTP2_SERVER}/media/test_output.mpd`,
-    duration: 30,
+    testName: "TheEmptinessMachine - HTTP/2",
+    videoManifestURL: `${HTTP2_SERVER}/media/TheEmptinessMachine.mp4_output.mpd`,
+    duration: 220,
+  },
+  {
+    playerURL: VIDEO_PLAYER,
+    testName: "TheEmptinessMachine - HTTP/3",
+    videoManifestURL: `${HTTP3_SERVER}/media/TheEmptinessMachine.mp4_output.mpd`,
+    duration: 220,
   },
 ];
 
