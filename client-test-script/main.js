@@ -39,6 +39,7 @@ wss.on("connection", function connection(ws) {
 
     // We only care about bitrate and stall rate
     if (
+      true ||
       dataPoint["metricsName"] === "bitrate" ||
       dataPoint["metricsName"] === "stallRate"
     ) {
