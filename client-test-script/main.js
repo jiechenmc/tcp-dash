@@ -60,7 +60,6 @@ wss.on("connection", function connection(ws) {
     }
   });
   ws.on("close", function message(_) {
-    console.log(currentCollector);
     if (currentCollector !== null) {
       currentCollector.kill("SIGINT");
     }
