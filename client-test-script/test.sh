@@ -9,24 +9,24 @@ sudo modprobe tcp_cubic
 echo "Testing with CUBIC..."
 sudo sysctl -w net.ipv4.tcp_congestion_control=cubic
 sleep 3
-node main.js "$@"
+node main.js "CUBIC" "$@"
 sleep 3
 
 echo "Testing with BBR..."
 sudo sysctl -w net.ipv4.tcp_congestion_control=bbr
 sleep 3
-node main.js "$@"
+node main.js "BBR" "$@"
 sleep 3
 
 echo "Testing with Westwood..."
 sudo sysctl -w net.ipv4.tcp_congestion_control=westwood
 sleep 3
-node main.js "$@"
+node main.js "Westwood" "$@"
 sleep 3
 
 echo "Testing with HTCP..."
 sudo sysctl -w net.ipv4.tcp_congestion_control=htcp
 sleep 3
-node main.js "$@"
+node main.js "HTCP" "$@"
 sleep 3
 
