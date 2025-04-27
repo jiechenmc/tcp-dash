@@ -57,7 +57,7 @@ wss.on("connection", function connection(ws) {
 
 // The player is HTTP1.1
 const VIDEO_PLAYER =
-  "http://int.dhinak,net:3000/samples/dash-if-reference-player/index.html";
+  "http://int.dhinak.net:3000/samples/dash-if-reference-player/index.html";
 
 const HTTP1_SERVER = "https://int.dhinak.net:1443";
 
