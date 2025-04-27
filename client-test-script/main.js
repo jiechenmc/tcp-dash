@@ -18,7 +18,7 @@ if (args.length > 0) {
   }
 
   if (args.length > 0) {
-    title = args[0];
+    title = args.join(" ");
   }
 }
 
