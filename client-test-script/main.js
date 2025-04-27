@@ -77,7 +77,9 @@ const HTTP2_SERVER = "https://int.dhinak.net:2443";
 const HTTP3_SERVER = "https://int.dhinak.net:8443";
 
 const tests = [];
-const multibar = new MultiBar({}, Presets.shades_classic);
+const multibar = new MultiBar({
+  forceRedraw: true,
+}, Presets.shades_classic);
 
 for (let i = 0; i < ALGORITHMS.length; i++) {
   const algorithm = ALGORITHMS[i];
