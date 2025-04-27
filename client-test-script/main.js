@@ -38,6 +38,7 @@ const insert = database.prepare(
 const port = 6789;
 
 const wss = new WebSocketServer({ port: port });
+let currentCollector = null;
 
 wss.on("connection", function connection(ws) {
   ws.on("message", function message(data) {
@@ -56,6 +57,12 @@ wss.on("connection", function connection(ws) {
         dataPoint["metricsTime"],
         dataPoint["metricsValue"]
       );
+    }
+  });
+  ws.on("close", function message(_) {
+    console.log(currentCollector);
+    if (currentCollector !== null) {
+      currentCollector.kill("SIGINT");
     }
   });
 });
@@ -77,9 +84,12 @@ const HTTP2_SERVER = "https://int.dhinak.net:2443";
 const HTTP3_SERVER = "https://int.dhinak.net:8443";
 
 const tests = [];
-const multibar = new MultiBar({
-  forceRedraw: true,
-}, Presets.shades_classic);
+const multibar = new MultiBar(
+  {
+    forceRedraw: true,
+  },
+  Presets.shades_classic
+);
 
 for (let i = 0; i < ALGORITHMS.length; i++) {
   const algorithm = ALGORITHMS[i];
@@ -133,6 +143,8 @@ async function runTestSync(test) {
     test.videoManifestURL,
     test.duration,
   ]);
+
+  currentCollector = collector;
 
   collector.stdout.on("data", (data) => {
     multibar.log(`stdout: ${data}\n`);

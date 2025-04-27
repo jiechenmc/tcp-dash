@@ -2,7 +2,7 @@ import { chromium } from "playwright";
 
 const runTest = async (playerURL, testName, videoManifestURL, duration) => {
   console.log(`Running test: ${testName}`);
-  
+
   // Setup
   const browser = await chromium.launch({
     channel: "chrome",
@@ -26,7 +26,7 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
 
   await videoManifestInput.fill(videoManifestURL);
 
-  await new Promise(r => setTimeout(r, 3000));
+  await new Promise((r) => setTimeout(r, 3000));
 
   const loadVideoButton = await page.locator(
     "body > div.container > div:nth-child(2) > div.input-group > span > button.btn.btn-primary"
@@ -34,12 +34,14 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
 
   await loadVideoButton.click();
 
-  console.log(`Waiting ${duration} seconds before closing...`);
-  setTimeout(async () => {
+  process.on("SIGINT", async () => {
+    console.log(
+      `[${testName}] Video Playback Finished, Closing Browser and moving onto the next test`
+    );
     await await context.close();
     await browser.close();
     process.exit(0);
-  }, duration * 1000 + 1000);
+  });
 };
 
 const args = process.argv.slice(2);
