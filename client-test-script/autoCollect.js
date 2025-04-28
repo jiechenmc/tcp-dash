@@ -34,14 +34,20 @@ const runTest = async (playerURL, testName, videoManifestURL, duration) => {
 
   await loadVideoButton.click();
 
-  process.on("SIGINT", async () => {
-    console.log(
-      `[${testName}] Video Playback Finished, Closing Browser and moving onto the next test`
-    );
+  // process.on("SIGINT", async () => {
+  //   console.log(
+  //     `[${testName}] Video Playback Finished, Closing Browser and moving onto the next test`
+  //   );
+  //   await await context.close();
+  //   await browser.close();
+  //   process.exit(0);
+  // });
+  console.log(`Waiting ${duration} seconds before closing...`);
+  setTimeout(async () => {
     await await context.close();
     await browser.close();
     process.exit(0);
-  });
+  }, duration * 1000 + 1000);
 };
 
 const args = process.argv.slice(2);
