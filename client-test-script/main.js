@@ -42,6 +42,11 @@ let currentCollector = null;
 
 wss.on("connection", function connection(ws) {
   ws.on("message", function message(data) {
+    if (data.toString() === "close") {
+      if (currentCollector !== null) currentCollector.kill("SIGINT");
+      return;
+    }
+
     const dataPoint = JSON.parse(data);
 
     // We only care about bitrate and stall rate
@@ -57,11 +62,6 @@ wss.on("connection", function connection(ws) {
         dataPoint["metricsTime"],
         dataPoint["metricsValue"]
       );
-    }
-  });
-  ws.on("close", function message(_) {
-    if (currentCollector !== null) {
-      currentCollector.kill("SIGINT");
     }
   });
 });
@@ -82,7 +82,23 @@ const HTTP2_SERVER = "https://int.dhinak.net:2443";
 
 const HTTP3_SERVER = "https://int.dhinak.net:8443";
 
+// const tests = [
+//   {
+//     playerURL: VIDEO_PLAYER,
+//     testName: "HTTP/1.1 Test",
+//     videoManifestURL: `${HTTP1_SERVER}/media/test_output.mpd`,
+//     duration: 30,
+//   },
+//   {
+//     playerURL: VIDEO_PLAYER,
+//     testName: "HTTP/2 Test",
+//     videoManifestURL: `${HTTP2_SERVER}/media/test_output.mpd`,
+//     duration: 30,
+//   },
+// ];
+
 const tests = [];
+
 const multibar = new MultiBar(
   {
     forceRedraw: true,
