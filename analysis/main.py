@@ -50,12 +50,21 @@ def filter_df(df):
     return stallrate_df, bitrate_df
 
 
-def plot(df, title, xlabel, ylabel, out_filename):
+def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     df = df.reset_index()
     palette = sns.color_palette("Set2", n_colors=4)
     g = sns.FacetGrid(df, col="http", height=4, aspect=1.2)
     g.figure.set_size_inches(12, 4)
-    g.figure.suptitle(title, fontsize=14)
+    g.figure.suptitle(title, fontsize=16, y=1.05)
+    g.figure.text(
+        0.5,
+        0.95,
+        subtitle,
+        ha="center",
+        fontsize=12,
+        style="italic",
+    )
+
     g.map_dataframe(
         sns.barplot, x="abr", y="metricValue", hue="cc", palette=palette, errorbar=None
     )
@@ -68,7 +77,7 @@ def plot(df, title, xlabel, ylabel, out_filename):
     g.savefig(out_filename, dpi=300, bbox_inches="tight")
 
 
-def run_flow(db_name, title):
+def run_flow(db_name, title, subtitle):
     df = load_db(db_name)
 
     stallrate_df, bitrate_df = filter_df(df)
@@ -77,6 +86,7 @@ def run_flow(db_name, title):
     plot(
         bitrate_df,
         title,
+        subtitle,
         xlabel,
         "Mean Bitrate (kbps)",
         f"plots/{title}-bitrate",
@@ -84,12 +94,23 @@ def run_flow(db_name, title):
     plot(
         stallrate_df,
         title,
+        subtitle,
         xlabel,
         "Mean StallRate (%)",
         f"plots/{title}-stallrate",
     )
 
 
-run_flow("good-low.db", "Low Network Condition")
-run_flow("good-high.db", "High Network Condition")
-run_flow("good-higher.db", "Extreme Network Condition")
+run_flow(
+    "good-low.db", "Low Network Condition", "20ms RTT, No Packet Loss, 10Mbps Bandwidth"
+)
+run_flow(
+    "good-high.db",
+    "High Network Condition",
+    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+)
+run_flow(
+    "good-higher.db",
+    "Extreme Network Condition",
+    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+)
