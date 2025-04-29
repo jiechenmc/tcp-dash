@@ -48,12 +48,12 @@ def filter_df(df):
     return stallrate_df, bitrate_df
 
 
-def plot(df, xlabel, ylabel):
+def plot(df, title, xlabel, ylabel):
     df = df.reset_index()
     palette = sns.color_palette("Set2", n_colors=4)
     g = sns.FacetGrid(df, col="http", height=4, aspect=1.2)
     g.figure.set_size_inches(12, 4)
-    g.figure.suptitle("Mean Bitrate by ABR, CC, and HTTP Type", fontsize=16)
+    g.figure.suptitle(title, fontsize=14)
     g.map_dataframe(
         sns.barplot, x="abr", y="metricValue", hue="cc", palette=palette, errorbar=None
     )
@@ -70,5 +70,5 @@ df = load_db("good-low.db")
 
 stallrate_df, bitrate_df = filter_df(df)
 
-plot(bitrate_df, "ABR", "Mean Bitrate (kbps)")
-plot(stallrate_df, "ABR", "Mean StallRate (%)")
+plot(bitrate_df, "Low Network Condition", "ABR", "Mean Bitrate (kbps)")
+plot(stallrate_df, "Low Network Condition", "ABR", "Mean StallRate (%)")
