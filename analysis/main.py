@@ -102,15 +102,17 @@ def run_flow(db_name, title, subtitle):
 
 
 run_flow(
-    "good-low.db", "Low Network Condition", "20ms RTT, No Packet Loss, 10Mbps Bandwidth"
+    "data/good-low.db",
+    "Low Network Condition",
+    "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
 )
 run_flow(
-    "good-high.db",
+    "data/good-high.db",
     "High Network Condition",
     "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
 )
 run_flow(
-    "good-higher.db",
+    "data/good-higher.db",
     "Extreme Network Condition",
     "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
 )
