@@ -27,6 +27,8 @@ def filter_df(df):
     # Filter df to include only stallRate and bitrate
 
     df = df[df["metric"].isin(["stallRate", "bitrate"])]
+    df["cc"] = df["cc"].apply(lambda x: str(x).split()[0])
+
     stallrate_df = df[df["metric"] == "stallRate"]
     bitrate_df = df[df["metric"] == "bitrate"]
 
@@ -48,7 +50,7 @@ def filter_df(df):
     return stallrate_df, bitrate_df
 
 
-def plot(df, title, xlabel, ylabel):
+def plot(df, title, xlabel, ylabel, out_filename):
     df = df.reset_index()
     palette = sns.color_palette("Set2", n_colors=4)
     g = sns.FacetGrid(df, col="http", height=4, aspect=1.2)
@@ -63,12 +65,31 @@ def plot(df, title, xlabel, ylabel):
     # g._legend.set_bbox_to_anchor((1.05, 0.5))
     g._legend.set_frame_on(True)
     # plt.tight_layout()
-    plt.show()
+    g.savefig(out_filename, dpi=300, bbox_inches="tight")
 
 
-df = load_db("good-low.db")
+def run_flow(db_name, title):
+    df = load_db(db_name)
 
-stallrate_df, bitrate_df = filter_df(df)
+    stallrate_df, bitrate_df = filter_df(df)
+    xlabel = "Adaptive Bitrate Algorithm (ABR)"
 
-plot(bitrate_df, "Low Network Condition", "ABR", "Mean Bitrate (kbps)")
-plot(stallrate_df, "Low Network Condition", "ABR", "Mean StallRate (%)")
+    plot(
+        bitrate_df,
+        title,
+        xlabel,
+        "Mean Bitrate (kbps)",
+        f"plots/{title}-bitrate",
+    )
+    plot(
+        stallrate_df,
+        title,
+        xlabel,
+        "Mean StallRate (%)",
+        f"plots/{title}-stallrate",
+    )
+
+
+run_flow("good-low.db", "Low Network Condition")
+run_flow("good-high.db", "High Network Condition")
+run_flow("good-higher.db", "Extreme Network Condition")
