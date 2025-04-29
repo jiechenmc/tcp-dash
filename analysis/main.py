@@ -69,6 +69,8 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
         sns.barplot, x="abr", y="metricValue", hue="cc", palette=palette, errorbar=None
     )
     g.set_axis_labels(xlabel, ylabel)
+    g.set_titles(col_template="{col_name}")
+
     g.add_legend()
 
     # g._legend.set_bbox_to_anchor((1.05, 0.5))
