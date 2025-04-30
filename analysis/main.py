@@ -23,7 +23,7 @@ def load_db(db_name):
     return df
 
 
-def filter_df(df):
+def filter_df(df, title):
     # Filter df to include only stallRate and bitrate
 
     df = df[df["metric"].isin(["stallRate", "bitrate"])]
@@ -32,8 +32,9 @@ def filter_df(df):
     stallrate_df = df[df["metric"] == "stallRate"]
     bitrate_df = df[df["metric"] == "bitrate"]
 
-    stallrate_df.to_csv("good-stallRate.csv")
-    bitrate_df.to_csv("good-bitrate.csv")
+    # Uncomment this to see source data
+    # stallrate_df.to_csv(f"data/stallRate-{title}.csv")
+    # bitrate_df.to_csv(f"data/bitrate-{title}.csv")
 
     return stallrate_df, bitrate_df
 
@@ -41,8 +42,8 @@ def filter_df(df):
 def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     df = df.reset_index()
 
-    t_df = df[(df["cc"] == "Westwood") & (df["abr"] == "Festive")]
-    print(t_df.groupby(["http", "cc", "abr"]).agg({"metricValue": "mean"}))
+    # t_df = df[(df["cc"] == "Westwood") & (df["abr"] == "Festive")]
+    # print(t_df.groupby(["http", "cc", "abr"]).agg({"metricValue": "mean"}))
 
     palette = sns.color_palette("Set2", n_colors=4)
 
@@ -81,7 +82,7 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
 def run_flow(db_name, title, subtitle):
     df = load_db(db_name)
 
-    stallrate_df, bitrate_df = filter_df(df)
+    stallrate_df, bitrate_df = filter_df(df, title)
     xlabel = "Adaptive Bitrate Algorithm (ABR)"
 
     plot(
