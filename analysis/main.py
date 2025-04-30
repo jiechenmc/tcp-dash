@@ -32,18 +32,6 @@ def filter_df(df):
     stallrate_df = df[df["metric"] == "stallRate"]
     bitrate_df = df[df["metric"] == "bitrate"]
 
-    # stallrate_df = stallrate_df.groupby(["http", "cc", "abr"]).agg(
-    #     {
-    #         "metricValue": ["mean", "std"],
-    #     }
-    # )
-
-    # bitrate_df = bitrate_df.groupby(["http", "cc", "abr"]).agg(
-    #     {
-    #         "metricValue": ["mean", "std"],
-    #     }
-    # )
-
     stallrate_df.to_csv("good-stallRate.csv")
     bitrate_df.to_csv("good-bitrate.csv")
 
@@ -51,8 +39,11 @@ def filter_df(df):
 
 
 def plot(df, title, subtitle, xlabel, ylabel, out_filename):
-    # print(df)
     df = df.reset_index()
+
+    t_df = df[(df["cc"] == "Westwood") & (df["abr"] == "Festive")]
+    print(t_df.groupby(["http", "cc", "abr"]).agg({"metricValue": "mean"}))
+
     palette = sns.color_palette("Set2", n_colors=4)
 
     g = sns.FacetGrid(df, col="http", height=4, aspect=1.2)
@@ -111,34 +102,34 @@ def run_flow(db_name, title, subtitle):
     )
 
 
-run_flow(
-    "data/low-1.db",
-    "Low Network Condition Trial 1",
-    "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
-)
-run_flow(
-    "data/high-1.db",
-    "High Network Condition Trial 1",
-    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
-)
-run_flow(
-    "data/extreme-1.db",
-    "Extreme Network Condition Trial 1",
-    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
-)
+# run_flow(
+#     "data/low-1.db",
+#     "Low Network Condition Trial 1",
+#     "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
+# )
+# run_flow(
+#     "data/high-1.db",
+#     "High Network Condition Trial 1",
+#     "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+# )
+# run_flow(
+#     "data/extreme-1.db",
+#     "Extreme Network Condition Trial 1",
+#     "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+# )
 
 run_flow(
     "data/low-2.db",
     "Low Network Condition Trial 2",
     "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
 )
-run_flow(
-    "data/high-2.db",
-    "High Network Condition Trial 2",
-    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
-)
-run_flow(
-    "data/extreme-2.db",
-    "Extreme Network Condition Trial 2",
-    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
-)
+# run_flow(
+#     "data/high-2.db",
+#     "High Network Condition Trial 2",
+#     "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+# )
+# run_flow(
+#     "data/extreme-2.db",
+#     "Extreme Network Condition Trial 2",
+#     "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+# )
