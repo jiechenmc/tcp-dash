@@ -123,7 +123,7 @@ run_flow(
 )
 run_flow(
     "data/extreme-1.db",
-    "Extreme Network Conditio Trial 1",
+    "Extreme Network Condition Trial 1",
     "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
 )
 
