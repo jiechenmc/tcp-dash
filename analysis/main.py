@@ -32,17 +32,17 @@ def filter_df(df):
     stallrate_df = df[df["metric"] == "stallRate"]
     bitrate_df = df[df["metric"] == "bitrate"]
 
-    stallrate_df = stallrate_df.groupby(["http", "cc", "abr"]).agg(
-        {
-            "metricValue": "mean",
-        }
-    )
+    # stallrate_df = stallrate_df.groupby(["http", "cc", "abr"]).agg(
+    #     {
+    #         "metricValue": ["mean", "std"],
+    #     }
+    # )
 
-    bitrate_df = bitrate_df.groupby(["http", "cc", "abr"]).agg(
-        {
-            "metricValue": "mean",
-        }
-    )
+    # bitrate_df = bitrate_df.groupby(["http", "cc", "abr"]).agg(
+    #     {
+    #         "metricValue": ["mean", "std"],
+    #     }
+    # )
 
     stallrate_df.to_csv("good-stallRate.csv")
     bitrate_df.to_csv("good-bitrate.csv")
@@ -51,8 +51,10 @@ def filter_df(df):
 
 
 def plot(df, title, subtitle, xlabel, ylabel, out_filename):
+    # print(df)
     df = df.reset_index()
     palette = sns.color_palette("Set2", n_colors=4)
+
     g = sns.FacetGrid(df, col="http", height=4, aspect=1.2)
     g.figure.set_size_inches(12, 4)
     g.figure.suptitle(title, fontsize=16, y=1.05)
@@ -66,8 +68,14 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     )
 
     g.map_dataframe(
-        sns.barplot, x="abr", y="metricValue", hue="cc", palette=palette, errorbar=None
+        sns.barplot,
+        x="abr",
+        y="metricValue",
+        hue="cc",
+        estimator="mean",
+        palette=palette,
     )
+
     g.set_axis_labels(xlabel, ylabel)
     g.set_titles(col_template="{col_name}")
 
@@ -87,34 +95,50 @@ def run_flow(db_name, title, subtitle):
 
     plot(
         bitrate_df,
-        title,
+        f"{title} Bitrate",
         subtitle,
         xlabel,
         "Mean Bitrate (kbps)",
-        f"plots/{title}-bitrate",
+        f"plots/bitrate-{title}",
     )
     plot(
         stallrate_df,
-        title,
+        f"{title} Stall Rate",
         subtitle,
         xlabel,
         "Mean StallRate (%)",
-        f"plots/{title}-stallrate",
+        f"plots/stallrate-{title}",
     )
 
 
 run_flow(
-    "data/good-low.db",
-    "Low Network Condition",
+    "data/low-1.db",
+    "Low Network Condition Trial 1",
     "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
 )
 run_flow(
-    "data/good-high.db",
-    "High Network Condition",
+    "data/high-1.db",
+    "High Network Condition Trial 1",
     "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
 )
 run_flow(
-    "data/good-higher.db",
-    "Extreme Network Condition",
+    "data/extreme-1.db",
+    "Extreme Network Conditio Trial 1",
+    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+)
+
+run_flow(
+    "data/low-2.db",
+    "Low Network Condition Trial 2",
+    "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
+)
+run_flow(
+    "data/high-2.db",
+    "High Network Condition Trial 2",
+    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+)
+run_flow(
+    "data/extreme-2.db",
+    "Extreme Network Condition Trial 2",
     "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
 )
