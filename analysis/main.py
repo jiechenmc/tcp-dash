@@ -103,34 +103,52 @@ def run_flow(db_name, title, subtitle):
     )
 
 
-# run_flow(
-#     "data/low-1.db",
-#     "Low Network Condition Trial 1",
-#     "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
-# )
-# run_flow(
-#     "data/high-1.db",
-#     "High Network Condition Trial 1",
-#     "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
-# )
-# run_flow(
-#     "data/extreme-1.db",
-#     "Extreme Network Condition Trial 1",
-#     "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
-# )
+run_flow(
+    "data/low-1.db",
+    "Low Network Condition Trial 1",
+    "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
+)
+run_flow(
+    "data/high-1.db",
+    "High Network Condition Trial 1",
+    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+)
+run_flow(
+    "data/extreme-1.db",
+    "Extreme Network Condition Trial 1",
+    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+)
 
 run_flow(
     "data/low-2.db",
     "Low Network Condition Trial 2",
     "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
 )
-# run_flow(
-#     "data/high-2.db",
-#     "High Network Condition Trial 2",
-#     "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
-# )
-# run_flow(
-#     "data/extreme-2.db",
-#     "Extreme Network Condition Trial 2",
-#     "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
-# )
+
+run_flow(
+    "data/high-2.db",
+    "High Network Condition Trial 2",
+    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+)
+run_flow(
+    "data/extreme-2.db",
+    "Extreme Network Condition Trial 2",
+    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+)
+
+run_flow(
+    "data/low-3.db",
+    "Low Network Condition Trial 3",
+    "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
+)
+
+run_flow(
+    "data/high-3.db",
+    "High Network Condition Trial 3",
+    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+)
+run_flow(
+    "data/extreme-3.db",
+    "Extreme Network Condition Trial 3",
+    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+)
