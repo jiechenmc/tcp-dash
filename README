@@ -15,7 +15,8 @@ git submodule update
 - This will run a `HTTP/1.1` NGINX server on PORT `1443`
 - This will run a `HTTP/2` NGINX server on PORT `2443`
 - This will run a `HTTP/3` NGINX server on PORT `8443`
-- This will run `dash.js` on PORT `3000`
+- This will run `dash.js` on PORTS `3000-3005` -- What ABR algorithm is on what port is described in `docker-compose.yml` and below.
+
 
 # Set Up Client Script
 1. Configure the script in `./client-test-script/main.js`
