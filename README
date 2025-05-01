@@ -28,7 +28,7 @@ Note: You can access the dash.js instance directly on PORT 3000 without the clie
 
 # Switching ABR Algorithms
 
-We currently have 6 algorithms available in their respective branches. Do `git switch <branch_name>` and the dash.js instance will automatically reload with that ABR algorithm enabled.
+We currently have 6 algorithms available in their respective branches. Do `git switch <branch_name>` inside the `dash.js` submodule and the dash.js instance will automatically reload with that ABR algorithm enabled.
 
 The 6 available algorithms and their respective branches are detailed below:
 
@@ -39,3 +39,5 @@ BRANCH -> Algorithm
 4. L2A -> ABR L2A
 5. RB -> ABR RB
 6. THROUGHPUT -> ABR Throughput
+
+To simplify our experiment, we have created 6 submodules, with each referencing the branch listed above.
