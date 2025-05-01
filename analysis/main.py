@@ -85,6 +85,7 @@ def run_flow(db_name, title, subtitle):
     stallrate_df, bitrate_df = filter_df(df, title)
     xlabel = "Adaptive Bitrate Algorithm (ABR)"
 
+    print(title)
     plot(
         bitrate_df,
         f"{title} Bitrate",
