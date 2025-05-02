@@ -18,6 +18,7 @@ def load_db(db_name):
     df.columns = ["name", "time", "metric", "metricTime", "metricValue"]
     # df["time"] = pd.to_datetime(df["time"])
     df[["video", "cc", "abr", "http"]] = df["name"].str.split(" - ", expand=True)
+    df["cc"] = df["cc"].apply(lambda x: str(x).split()[0])
     df = df.drop("name", axis=1)
     df["metricValue"] = pd.to_numeric(df["metricValue"], errors="coerce")
     return df
@@ -27,7 +28,8 @@ def filter_df(df, title):
     # Filter df to include only stallRate and bitrate
 
     df = df[df["metric"].isin(["stallRate", "bitrate"])]
-    df["cc"] = df["cc"].apply(lambda x: str(x).split()[0])
+    # df = df[df["cc"].isin(["CUBIC","Westwood"])]
+    
 
     stallrate_df = df[df["metric"] == "stallRate"]
     bitrate_df = df[df["metric"] == "bitrate"]
