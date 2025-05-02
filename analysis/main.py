@@ -27,12 +27,15 @@ def load_db(db_name):
 def filter_df(df, title):
     # Filter df to include only stallRate and bitrate
 
-    df = df[df["metric"].isin(["stallRate", "bitrate"])]
+    times_to_drop = df.loc[(df['metric'] == 'buffer') & (df['metricValue'] < 0.3), 'metricTime'].unique()
+    df = df[~df['metricTime'].isin(times_to_drop)]
+    df = df[df["metric"].isin(["stallRate", "index"])]
     # df = df[df["cc"].isin(["CUBIC","Westwood"])]
+
     
 
     stallrate_df = df[df["metric"] == "stallRate"]
-    bitrate_df = df[df["metric"] == "bitrate"]
+    bitrate_df = df[df["metric"] == "index"]
 
     # Uncomment this to see source data
     # stallrate_df.to_csv(f"data/stallRate-{title}.csv")
