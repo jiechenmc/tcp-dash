@@ -68,19 +68,19 @@ def filter_df(df, title):
 
     # df = df[df["cc"].isin(["CUBIC","Westwood"])]
 
-    df["metricValue"] = np.where(
-    df["metric"] == "index",
-    df["metricValue"].astype(int).map(index_bitrate_map),
-    df["metricValue"]
-)
+#     df["metricValue"] = np.where(
+#     df["metric"] == "index",
+#     df["metricValue"].astype(int).map(index_bitrate_map),
+#     df["metricValue"]
+# )
 
    
     stallrate_df = df[df["metric"] == "stallRate"]
     bitrate_df = df[df["metric"] == "index"]
 
     # Map index to actual bitrate
-    bitrate_order = [index_bitrate_map[i] for i in sorted(index_bitrate_map.keys())]
-    bitrate_df['metricValue'] = pd.Categorical(bitrate_df['metricValue'], categories=bitrate_order, ordered=True)
+    # bitrate_order = [index_bitrate_map[i] for i in sorted(index_bitrate_map.keys())]
+    # bitrate_df['metricValue'] = pd.Categorical(bitrate_df['metricValue'], categories=bitrate_order, ordered=True)
 
     # Uncomment this to see source data
     # stallrate_df.to_csv(f"data/stallRate-{title}.csv")
@@ -126,9 +126,12 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     # g._legend.set_bbox_to_anchor((1.05, 0.5))
     g._legend.set_frame_on(True)
 
+    
     if "bitrate" in out_filename:
-        plt.gca().invert_yaxis()
-    # plt.tight_layout()
+        ticks, _ = plt.yticks()
+        labels = [index_bitrate_map.get(int(tick), "") for tick in ticks]
+        plt.yticks(ticks, labels)
+
     g.savefig(out_filename, dpi=300, bbox_inches="tight")
     plt.close()
 
