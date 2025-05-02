@@ -1,8 +1,39 @@
 import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
+import seaborn as sns 
+import numpy as np
 
+index_bitrate_map = {
+    0: "72k",
+    1: "76k",
+    2: "81k",
+    3: "84k",
+    4: "166k",
+    5: "169k",
+    6: "214k",
+    7: "320k",
+    8: "330k",
+    9: "635k",
+    10: "732k",
+    11: "674k",
+    12: "980k",
+    13: "1106k",
+    14: "1499k",
+    15: "2074k",
+    16: "1226k",
+    17: "1767k",
+    18: "2781k",
+    19: "2974k",
+    20: "4692k",
+    21: "3486k",
+    22: "4676k",
+    23: "8631k",
+    24: "6978k",
+    25: "13308k",
+    26: "18625k"
+}
+    
 
 def load_db(db_name):
     con = sqlite3.connect(db_name)
@@ -30,12 +61,26 @@ def filter_df(df, title):
     times_to_drop = df.loc[(df['metric'] == 'buffer') & (df['metricValue'] < 0.3), 'metricTime'].unique()
     df = df[~df['metricTime'].isin(times_to_drop)]
     df = df[df["metric"].isin(["stallRate", "index"])]
+    df = df.dropna()
+
+    # print(df)
+
+
     # df = df[df["cc"].isin(["CUBIC","Westwood"])]
 
-    
+    df["metricValue"] = np.where(
+    df["metric"] == "index",
+    df["metricValue"].astype(int).map(index_bitrate_map),
+    df["metricValue"]
+)
 
+   
     stallrate_df = df[df["metric"] == "stallRate"]
     bitrate_df = df[df["metric"] == "index"]
+
+    # Map index to actual bitrate
+    bitrate_order = [index_bitrate_map[i] for i in sorted(index_bitrate_map.keys())]
+    bitrate_df['metricValue'] = pd.Categorical(bitrate_df['metricValue'], categories=bitrate_order, ordered=True)
 
     # Uncomment this to see source data
     # stallrate_df.to_csv(f"data/stallRate-{title}.csv")
@@ -80,6 +125,9 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
 
     # g._legend.set_bbox_to_anchor((1.05, 0.5))
     g._legend.set_frame_on(True)
+
+    if "bitrate" in out_filename:
+        plt.gca().invert_yaxis()
     # plt.tight_layout()
     g.savefig(out_filename, dpi=300, bbox_inches="tight")
     plt.close()
