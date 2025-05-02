@@ -52,6 +52,7 @@ def load_db(db_name):
     df["cc"] = df["cc"].apply(lambda x: str(x).split()[0])
     df = df.drop("name", axis=1)
     df["metricValue"] = pd.to_numeric(df["metricValue"], errors="coerce")
+
     return df
 
 
@@ -92,10 +93,44 @@ def filter_df(df, title):
 def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     df = df.reset_index()
 
+    # Filter for HTTP/3 rows
+    http3_df = df[df["http"] == "HTTP/3"]
+
+    # Aggregate by 'time'
+    udp_rows = (
+        http3_df.groupby("time", as_index=False)
+        .agg({
+            "metricValue": "mean",
+            "metric": "first",
+            "metricTime": "first",
+            "video": "first",
+            "abr": "first",
+            "http": "first"
+        })
+    )
+    udp_rows["cc"] = "UDP"
+    df = pd.concat([df, udp_rows], ignore_index=True)
+    
+    unique_ccs = df["cc"].unique()
+    palette = sns.color_palette("Set2", n_colors=len(unique_ccs))
+    cc_color_map = dict(zip(unique_ccs, palette))
+
+    # print(cc_color_map)
+
+
+    # Append the new UDP rows to the original dataframe
+    df = df[
+        ((df["http"].isin(["HTTP/1.1", "HTTP/2"]))) |
+        ((df["http"] == "HTTP/3") & (df["cc"] == "UDP"))
+    ]
+
+
+    
+
     # t_df = df[(df["cc"] == "Westwood") & (df["abr"] == "Festive")]
     # print(t_df.groupby(["http", "cc", "abr"]).agg({"metricValue": "mean"}))
 
-    palette = sns.color_palette("Set2", n_colors=4)
+    #palette = sns.color_palette("Set2", n_colors=5)
 
     g = sns.FacetGrid(df, col="http", height=4, aspect=1.2)
     g.figure.set_size_inches(12, 4)
@@ -115,7 +150,7 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
         y="metricValue",
         hue="cc",
         estimator="mean",
-        palette=palette,
+        palette=cc_color_map,
     )
 
     g.set_axis_labels(xlabel, ylabel)

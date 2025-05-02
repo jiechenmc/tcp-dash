@@ -49,19 +49,31 @@ wss.on("connection", function connection(ws) {
 
     const dataPoint = JSON.parse(data);
 
-    // We only care about bitrate and stall rate
     if (
       true ||
       dataPoint["metricsName"] === "bitrate" ||
       dataPoint["metricsName"] === "stallRate"
     ) {
-      insert.run(
-        dataPoint["testName"],
-        new Date().toLocaleString(),
-        dataPoint["metricsName"],
-        dataPoint["metricsTime"],
-        dataPoint["metricsValue"]
-      );
+      try {
+        insert.run(
+          dataPoint["testName"],
+          new Date().toLocaleString(),
+          dataPoint["metricsName"],
+          dataPoint["metricsTime"],
+          dataPoint["metricsValue"]
+        );
+      } catch (err) {
+        console.error(
+          dataPoint["metricsValue"],
+          typeof dataPoint["metricsValue"]
+        );
+
+        try {
+          JSON.stringify(dataPoint["metricsValue"]);
+        } catch (err) {
+          console.error("It Failed.");
+        }
+      }
     }
   });
 });
