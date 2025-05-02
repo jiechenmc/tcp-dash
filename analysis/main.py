@@ -16,7 +16,7 @@ def load_db(db_name):
     df = pd.DataFrame(data)
     df = df.drop(df.columns[0], axis=1)
     df.columns = ["name", "time", "metric", "metricTime", "metricValue"]
-    # df["time"] = pd.to_datetime(df["time"])
+    df["time"] = pd.to_datetime(df["time"], format="%m/%d/%Y, %I:%M:%S %p")
     df[["video", "cc", "abr", "http"]] = df["name"].str.split(" - ", expand=True)
     df["cc"] = df["cc"].apply(lambda x: str(x).split()[0])
     df = df.drop("name", axis=1)
