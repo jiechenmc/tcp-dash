@@ -48,31 +48,40 @@ wss.on("connection", function connection(ws) {
     }
 
     const dataPoint = JSON.parse(data);
+    try {
+      insert.run(
+        dataPoint["testName"],
+        new Date().toLocaleString(),
+        dataPoint["metricsName"],
+        dataPoint["metricsTime"],
+        dataPoint["metricsValue"]
+      );
+    } catch (err) {
+      console.error(
+        "insert failed",
+        dataPoint["metricsName"],
+        dataPoint["metricsValue"],
+        typeof dataPoint["metricsValue"]
+      );
+      console.error(err);
 
-    if (
-      true ||
-      dataPoint["metricsName"] === "bitrate" ||
-      dataPoint["metricsName"] === "stallRate"
-    ) {
       try {
         insert.run(
           dataPoint["testName"],
           new Date().toLocaleString(),
           dataPoint["metricsName"],
           dataPoint["metricsTime"],
-          dataPoint["metricsValue"]
+          JSON.stringify(dataPoint["metricsValue"])
         );
       } catch (err) {
+
         console.error(
+          "insert failed twice!",
+          dataPoint["metricsName"],
           dataPoint["metricsValue"],
           typeof dataPoint["metricsValue"]
         );
-
-        try {
-          JSON.stringify(dataPoint["metricsValue"]);
-        } catch (err) {
-          console.error("It Failed.");
-        }
+        console.error(err);
       }
     }
   });
