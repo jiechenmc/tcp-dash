@@ -16,7 +16,7 @@ def load_db(db_name):
     df = pd.DataFrame(data)
     df = df.drop(df.columns[0], axis=1)
     df.columns = ["name", "time", "metric", "metricTime", "metricValue"]
-    df["time"] = pd.to_datetime(df["time"])
+    # df["time"] = pd.to_datetime(df["time"])
     df[["video", "cc", "abr", "http"]] = df["name"].str.split(" - ", expand=True)
     df = df.drop("name", axis=1)
     df["metricValue"] = pd.to_numeric(df["metricValue"], errors="coerce")
@@ -77,6 +77,7 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     g._legend.set_frame_on(True)
     # plt.tight_layout()
     g.savefig(out_filename, dpi=300, bbox_inches="tight")
+    plt.close()
 
 
 def run_flow(db_name, title, subtitle):
@@ -104,52 +105,20 @@ def run_flow(db_name, title, subtitle):
     )
 
 
-run_flow(
-    "data/low-1.db",
-    "Low Network Condition Trial 1",
-    "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
-)
-run_flow(
-    "data/high-1.db",
-    "High Network Condition Trial 1",
-    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
-)
-run_flow(
-    "data/extreme-1.db",
-    "Extreme Network Condition Trial 1",
-    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
-)
+for i in range(1, 5):
 
-run_flow(
-    "data/low-2.db",
-    "Low Network Condition Trial 2",
-    "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
-)
-
-run_flow(
-    "data/high-2.db",
-    "High Network Condition Trial 2",
-    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
-)
-run_flow(
-    "data/extreme-2.db",
-    "Extreme Network Condition Trial 2",
-    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
-)
-
-run_flow(
-    "data/low-3.db",
-    "Low Network Condition Trial 3",
-    "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
-)
-
-run_flow(
-    "data/high-3.db",
-    "High Network Condition Trial 3",
-    "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
-)
-run_flow(
-    "data/extreme-3.db",
-    "Extreme Network Condition Trial 3",
-    "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
-)
+    run_flow(
+        f"data/low-{i}.db",
+        f"Low Network Condition Trial {i}",
+        "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
+    )
+    run_flow(
+        f"data/high-{i}.db",
+        f"High Network Condition Trial {i}",
+        "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+    )
+    run_flow(
+        f"data/extreme-{i}.db",
+        f"Extreme Network Condition Trial {i}",
+        "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+    )
