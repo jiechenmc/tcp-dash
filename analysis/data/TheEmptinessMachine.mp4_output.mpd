@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="urn:mpeg:dash:schema:mpd:2011"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd"
+	profiles="urn:mpeg:dash:profile:isoff-live:2011"
+	type="static"
+	mediaPresentationDuration="PT3M14.8S"
+	maxSegmentDuration="PT3.0S"
+	minBufferTime="PT6.0S">
+	<ProgramInformation>
+		<Title>The Emptiness Machine (Live) - Linkin Park</Title>
+	</ProgramInformation>
+	<ServiceDescription id="0">
+	</ServiceDescription>
+	<Period id="0" start="PT0.0S">
+		<AdaptationSet id="0" contentType="video" startWithSAP="1" segmentAlignment="true" bitstreamSwitching="true" frameRate="24000/1001" maxWidth="3840" maxHeight="2160" par="16:9" lang="und">
+			<Representation id="0" mimeType="video/mp4" codecs="avc1.64000c" bandwidth="72000" width="256" height="144" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="1" mimeType="video/mp4" codecs="avc1.64000c" bandwidth="76000" width="256" height="144" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="2" mimeType="video/mp4" codecs="avc1.64000c" bandwidth="81000" width="256" height="144" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="3" mimeType="video/mp4" codecs="avc1.64000c" bandwidth="84000" width="256" height="144" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="4" mimeType="video/mp4" codecs="avc1.64000c" bandwidth="166000" width="256" height="144" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="5" mimeType="video/mp4" codecs="avc1.64000c" bandwidth="169000" width="256" height="144" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="6" mimeType="video/mp4" codecs="avc1.64001e" bandwidth="214000" width="640" height="360" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="7" mimeType="video/mp4" codecs="avc1.64001e" bandwidth="320000" width="640" height="360" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="8" mimeType="video/mp4" codecs="avc1.64001e" bandwidth="330000" width="640" height="360" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="9" mimeType="video/mp4" codecs="avc1.64001e" bandwidth="635000" width="640" height="360" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="10" mimeType="video/mp4" codecs="avc1.64001e" bandwidth="732000" width="640" height="360" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="11" mimeType="video/mp4" codecs="avc1.64001f" bandwidth="674000" width="1280" height="720" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="12" mimeType="video/mp4" codecs="avc1.64001f" bandwidth="980000" width="1280" height="720" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="13" mimeType="video/mp4" codecs="avc1.64001f" bandwidth="1106000" width="1280" height="720" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="14" mimeType="video/mp4" codecs="avc1.64001f" bandwidth="1499000" width="1280" height="720" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="15" mimeType="video/mp4" codecs="avc1.64001f" bandwidth="2074000" width="1280" height="720" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="16" mimeType="video/mp4" codecs="avc1.640028" bandwidth="1226000" width="1920" height="1080" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="17" mimeType="video/mp4" codecs="avc1.640028" bandwidth="1767000" width="1920" height="1080" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="18" mimeType="video/mp4" codecs="avc1.640028" bandwidth="2781000" width="1920" height="1080" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="19" mimeType="video/mp4" codecs="avc1.640028" bandwidth="2974000" width="1920" height="1080" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="20" mimeType="video/mp4" codecs="avc1.640028" bandwidth="4692000" width="1920" height="1080" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="21" mimeType="video/mp4" codecs="avc1.640032" bandwidth="3486000" width="2560" height="1440" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="22" mimeType="video/mp4" codecs="avc1.640032" bandwidth="4676000" width="2560" height="1440" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="23" mimeType="video/mp4" codecs="avc1.640032" bandwidth="8631000" width="2560" height="1440" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="24" mimeType="video/mp4" codecs="avc1.640033" bandwidth="6978000" width="3840" height="2160" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="25" mimeType="video/mp4" codecs="avc1.640033" bandwidth="13308000" width="3840" height="2160" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+			<Representation id="26" mimeType="video/mp4" codecs="avc1.640033" bandwidth="18625000" width="3840" height="2160" sar="1:1">
+				<SegmentTemplate timescale="24000" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="72072" r="63" />
+						<S d="64064" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+		</AdaptationSet>
+		<AdaptationSet id="1" contentType="audio" startWithSAP="1" segmentAlignment="true" bitstreamSwitching="true" lang="eng">
+			<Representation id="27" mimeType="audio/mp4" codecs="mp4a.40.2" bandwidth="128000" audioSamplingRate="44100">
+				<AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2" />
+				<SegmentTemplate timescale="44100" initialization="TheEmptinessMachine.mp4_chunk_$RepresentationID$_init.m4s" media="TheEmptinessMachine.mp4_chunk_$RepresentationID$_$Bandwidth$_$Number$.m4s" startNumber="1">
+					<SegmentTimeline>
+						<S t="0" d="132096" />
+						<S d="133120" />
+						<S d="132096" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="132096" r="1" />
+						<S d="133120" />
+						<S d="116736" />
+					</SegmentTimeline>
+				</SegmentTemplate>
+			</Representation>
+		</AdaptationSet>
+	</Period>
+</MPD>
