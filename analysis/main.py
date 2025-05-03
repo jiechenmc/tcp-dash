@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns 
+import seaborn as sns
 import numpy as np
 
 index_bitrate_map = {
@@ -31,9 +31,9 @@ index_bitrate_map = {
     23: "8631",
     24: "6978",
     25: "13308",
-    26: "18625"
+    26: "18625",
 }
-    
+
 
 def load_db(db_name):
     con = sqlite3.connect(db_name)
@@ -59,23 +59,23 @@ def load_db(db_name):
 def filter_df(df, title):
     # Filter df to include only stallRate and bitrate
 
-    times_to_drop = df.loc[(df['metric'] == 'buffer') & (df['metricValue'] < 0.3), 'metricTime'].unique()
-    df = df[~df['metricTime'].isin(times_to_drop)]
+    times_to_drop = df.loc[
+        (df["metric"] == "buffer") & (df["metricValue"] < 0.3), "metricTime"
+    ].unique()
+    df = df[~df["metricTime"].isin(times_to_drop)]
     df = df[df["metric"].isin(["stallRate", "index"])]
     df = df.dropna()
 
     # print(df)
 
-
     # df = df[df["cc"].isin(["CUBIC","Westwood"])]
 
-#     df["metricValue"] = np.where(
-#     df["metric"] == "index",
-#     df["metricValue"].astype(int).map(index_bitrate_map),
-#     df["metricValue"]
-# )
+    #     df["metricValue"] = np.where(
+    #     df["metric"] == "index",
+    #     df["metricValue"].astype(int).map(index_bitrate_map),
+    #     df["metricValue"]
+    # )
 
-   
     stallrate_df = df[df["metric"] == "stallRate"]
     bitrate_df = df[df["metric"] == "index"]
 
@@ -97,40 +97,35 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     http3_df = df[df["http"] == "HTTP/3"]
 
     # Aggregate by 'time'
-    udp_rows = (
-        http3_df.groupby("time", as_index=False)
-        .agg({
+    udp_rows = http3_df.groupby("time", as_index=False).agg(
+        {
             "metricValue": "mean",
             "metric": "first",
             "metricTime": "first",
             "video": "first",
             "abr": "first",
-            "http": "first"
-        })
+            "http": "first",
+        }
     )
     udp_rows["cc"] = "UDP"
     df = pd.concat([df, udp_rows], ignore_index=True)
-    
+
     unique_ccs = df["cc"].unique()
     palette = sns.color_palette("Set2", n_colors=len(unique_ccs))
     cc_color_map = dict(zip(unique_ccs, palette))
 
     # print(cc_color_map)
 
-
     # Append the new UDP rows to the original dataframe
     df = df[
-        ((df["http"].isin(["HTTP/1.1", "HTTP/2"]))) |
-        ((df["http"] == "HTTP/3") & (df["cc"] == "UDP"))
+        (df["http"].isin(["HTTP/1.1", "HTTP/2"]))
+        | ((df["http"] == "HTTP/3") & (df["cc"] == "UDP"))
     ]
-
-
-    
 
     # t_df = df[(df["cc"] == "Westwood") & (df["abr"] == "Festive")]
     # print(t_df.groupby(["http", "cc", "abr"]).agg({"metricValue": "mean"}))
 
-    #palette = sns.color_palette("Set2", n_colors=5)
+    # palette = sns.color_palette("Set2", n_colors=5)
 
     g = sns.FacetGrid(df, col="http", height=4, aspect=1.2)
     g.figure.set_size_inches(12, 4)
@@ -161,7 +156,6 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     # g._legend.set_bbox_to_anchor((1.05, 0.5))
     g._legend.set_frame_on(True)
 
-    
     if "bitrate" in out_filename:
         ticks, _ = plt.yticks()
         labels = [index_bitrate_map.get(int(tick), "") for tick in ticks]
@@ -196,8 +190,10 @@ def run_flow(db_name, title, subtitle):
     )
 
 
-for i in range(1, 6):
+# int(input("Enter Number of Trials: "))
+num_of_trials = 6
 
+for i in range(1, num_of_trials + 1):
     run_flow(
         f"data/low-{i}.db",
         f"Low Network Condition Trial {i}",
