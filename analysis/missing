@@ -1,0 +1,52 @@
+Low Network Trial 2 Stall Data Missing
+cc        abr    
+Westwood  Festive    2
+Name: http, dtype: int64
+
+Extreme Network Trial 2 Stall Data Missing
+cc   abr
+BBR  RB     2
+Name: http, dtype: int64
+
+Low Network Trial 2 Bitrate Data Missing
+cc        abr    
+Westwood  Festive    2
+Name: http, dtype: int64
+
+Extreme Network Trial 2 Bitrate Data Missing
+cc   abr
+BBR  RB     2
+Name: http, dtype: int64
+
+Low Network Trial 5 Stall Data Missing
+cc        abr 
+Westwood  Bola    1
+Name: http, dtype: int64
+
+Low Network Trial 5 Bitrate Data Missing
+cc        abr 
+Westwood  Bola    1
+Name: http, dtype: int64
+
+Low Network Trial 6 Stall Data Missing
+cc        abr 
+Westwood  Bola    2
+Name: http, dtype: int64
+
+High Network Trial 6 Stall Data Missing
+cc   abr    
+BBR  Dynamic    1
+     L2A        2
+Name: http, dtype: int64
+
+Low Network Trial 6 Bitrate Data Missing
+cc        abr 
+Westwood  Bola    2
+Name: http, dtype: int64
+
+High Network Trial 6 Bitrate Data Missing
+cc   abr    
+BBR  Dynamic    1
+     L2A        2
+Name: http, dtype: int64
+

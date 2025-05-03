@@ -5,42 +5,42 @@ import seaborn as sns
 import numpy as np
 
 index_bitrate_map = {
-    0: "72",
-    1: "76",
-    2: "81",
-    3: "84",
-    4: "166",
-    5: "169",
-    6: "214",
-    7: "320",
-    8: "330",
-    9: "635",
-    10: "732",
-    11: "674",
-    12: "980",
-    13: "1106",
-    14: "1499",
-    15: "2074",
-    16: "1226",
-    17: "1767",
-    18: "2781",
-    19: "2974",
-    20: "4692",
-    21: "3486",
-    22: "4676",
-    23: "8631",
-    24: "6978",
-    25: "13308",
-    26: "18625",
+    0: 72,
+    1: 76,
+    2: 81,
+    3: 84,
+    4: 166,
+    5: 169,
+    6: 214,
+    7: 320,
+    8: 330,
+    9: 635,
+    10: 732,
+    11: 674,
+    12: 980,
+    13: 1106,
+    14: 1499,
+    15: 2074,
+    16: 1226,
+    17: 1767,
+    18: 2781,
+    19: 2974,
+    20: 4692,
+    21: 3486,
+    22: 4676,
+    23: 8631,
+    24: 6978,
+    25: 13308,
+    26: 18625,
 }
 
 
 def load_db(db_name):
-    con = sqlite3.connect(db_name)
-    cur = con.cursor()
-    res = cur.execute("select * from data;")
+    with sqlite3.connect(db_name) as con:
+        cur = con.cursor()
+        res = cur.execute("select * from data;")
 
-    data = res.fetchall()
+        data = res.fetchall()
 
     # Getting and Cleaning Data
 
@@ -56,7 +56,7 @@ def load_db(db_name):
     return df
 
 
-def filter_df(df, title):
+def filter_df(df):
     # Filter df to include only stallRate and bitrate
 
     times_to_drop = df.loc[
@@ -66,18 +66,19 @@ def filter_df(df, title):
     df = df[df["metric"].isin(["stallRate", "index"])]
     df = df.dropna()
 
-    # print(df)
+    return df
 
-    # df = df[df["cc"].isin(["CUBIC","Westwood"])]
 
-    #     df["metricValue"] = np.where(
-    #     df["metric"] == "index",
-    #     df["metricValue"].astype(int).map(index_bitrate_map),
-    #     df["metricValue"]
-    # )
-
+def split_df(df, title=None):
+    df = filter_df(df)
     stallrate_df = df[df["metric"] == "stallRate"]
-    bitrate_df = df[df["metric"] == "index"]
+    bitrate_df = df[df["metric"] == "index"].copy()
+
+    bitrate_df["metricValue"] = np.floor(bitrate_df["metricValue"]).astype(float)
+    bitrate_df["metricValue"] = bitrate_df["metricValue"].map(index_bitrate_map)
+
+    bitrate_df.to_csv(f"data/sheets/{title}.csv", index=False)
+    # print(bitrate_df)
 
     # Map index to actual bitrate
     # bitrate_order = [index_bitrate_map[i] for i in sorted(index_bitrate_map.keys())]
@@ -156,10 +157,10 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
     # g._legend.set_bbox_to_anchor((1.05, 0.5))
     g._legend.set_frame_on(True)
 
-    if "bitrate" in out_filename:
-        ticks, _ = plt.yticks()
-        labels = [index_bitrate_map.get(int(tick), "") for tick in ticks]
-        plt.yticks(ticks, labels)
+    # if "bitrate" in out_filename:
+    # ticks, _ = plt.yticks()
+    # labels = [index_bitrate_map.get(int(tick), "") for tick in ticks]
+    # plt.yticks(ticks, labels)
 
     g.savefig(out_filename, dpi=300, bbox_inches="tight")
     plt.close()
@@ -168,7 +169,7 @@ def plot(df, title, subtitle, xlabel, ylabel, out_filename):
 def run_flow(db_name, title, subtitle):
     df = load_db(db_name)
 
-    stallrate_df, bitrate_df = filter_df(df, title)
+    stallrate_df, bitrate_df = split_df(df, title)
     xlabel = "Adaptive Bitrate Algorithm (ABR)"
 
     print(title)
@@ -185,27 +186,162 @@ def run_flow(db_name, title, subtitle):
         f"{title} Stall Rate",
         subtitle,
         xlabel,
-        "Mean StallRate (%)",
+        "Mean Stall Rate (%)",
         f"plots/stallrate-{title}",
     )
 
 
-# int(input("Enter Number of Trials: "))
-num_of_trials = 6
+def sub_plot_bitrate(bitrate_df, title, subtitle):
+    plot(
+        bitrate_df,
+        f"{title} Bitrate",
+        subtitle,
+        "Adaptive Bitrate Algorithm (ABR)",
+        "Mean Bitrate (kbps)",
+        f"plots/bitrate-{title}",
+    )
 
-for i in range(1, num_of_trials + 1):
-    run_flow(
-        f"data/low-{i}.db",
-        f"Low Network Condition Trial {i}",
+
+def sub_plot_stall(stallrate_df, title, subtitle):
+    plot(
+        stallrate_df,
+        f"{title} Stall Rate",
+        subtitle,
+        "Adaptive Bitrate Algorithm (ABR)",
+        "Mean Stall Rate (%)",
+        f"plots/stall-{title}",
+    )
+
+
+def validate_df(df):
+    counts = df.groupby(["cc", "abr"])["http"].nunique()
+    return (counts == 3).all()
+
+
+def plot_all(num_of_trials):
+    lstall_arr, hstall_arr, estall_arr = [], [], []
+    lbit_arr, hbit_arr, ebit_arr = [], [], []
+
+    for i in range(1, num_of_trials + 1):
+        lbit, lstall = split_df(load_db(f"data/low-{i}.db"))
+        hbit, hstall = split_df(load_db(f"data/high-{i}.db"))
+        ebit, estall = split_df(load_db(f"data/extreme-{i}.db"))
+
+        if validate_df(lstall):
+            lstall_arr.append(lstall)
+        else:
+            counts = lstall.groupby(["cc", "abr"])["http"].nunique()
+            print(
+                f"Low Network Trial {i} Stall Data Missing\n{counts[counts != 3]}",
+            )
+            print()
+
+        if validate_df(hstall):
+            hstall_arr.append(hstall)
+        else:
+            counts = hstall.groupby(["cc", "abr"])["http"].nunique()
+            print(
+                f"High Network Trial {i} Stall Data Missing\n{counts[counts != 3]}",
+            )
+            print()
+        if validate_df(estall):
+            estall_arr.append(estall)
+        else:
+            counts = estall.groupby(["cc", "abr"])["http"].nunique()
+            print(
+                f"Extreme Network Trial {i} Stall Data Missing\n{counts[counts != 3]}",
+            )
+            print()
+        if validate_df(lbit):
+            lbit_arr.append(lbit)
+        else:
+            counts = lbit.groupby(["cc", "abr"])["http"].nunique()
+            print(
+                f"Low Network Trial {i} Bitrate Data Missing\n{counts[counts != 3]}",
+            )
+            print()
+        if validate_df(hbit):
+            hbit_arr.append(hbit)
+        else:
+            counts = hbit.groupby(["cc", "abr"])["http"].nunique()
+            print(
+                f"High Network Trial {i} Bitrate Data Missing\n{counts[counts != 3]}",
+            )
+            print()
+        if validate_df(ebit):
+            ebit_arr.append(ebit)
+        else:
+            counts = ebit.groupby(["cc", "abr"])["http"].nunique()
+            print(
+                f"Extreme Network Trial {i} Bitrate Data Missing\n{counts[counts != 3]}",
+            )
+            print()
+
+    low_stall_df = pd.concat(lstall_arr)
+    high_stall_df = pd.concat(hstall_arr)
+    extreme_stall_df = pd.concat(estall_arr)
+
+    low_bit_df = pd.concat(lbit_arr)
+    high_bit_df = pd.concat(hbit_arr)
+    extreme_bit_df = pd.concat(ebit_arr)
+
+    sub_plot_bitrate(
+        low_bit_df,
+        "Low Network Condition Summary",
         "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
     )
-    run_flow(
-        f"data/high-{i}.db",
-        f"High Network Condition Trial {i}",
+
+    sub_plot_bitrate(
+        high_bit_df,
+        "High Network Condition Summary",
         "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
     )
-    run_flow(
-        f"data/extreme-{i}.db",
-        f"Extreme Network Condition Trial {i}",
+
+    sub_plot_bitrate(
+        extreme_bit_df,
+        "Extreme Network Condition Summary",
         "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
     )
+
+    sub_plot_stall(
+        low_stall_df,
+        "Low Network Condition Summary",
+        "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
+    )
+
+    sub_plot_stall(
+        high_stall_df,
+        "High Network Condition Summary",
+        "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+    )
+
+    sub_plot_stall(
+        extreme_stall_df,
+        "Extreme Network Condition Summary",
+        "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+    )
+
+
+def plot_trial(num_of_trials):
+    for i in range(1, num_of_trials + 1):
+        run_flow(
+            f"data/low-{i}.db",
+            f"Low Network Condition Trial {i}",
+            "20ms RTT, No Packet Loss, 10Mbps Bandwidth",
+        )
+        run_flow(
+            f"data/high-{i}.db",
+            f"High Network Condition Trial {i}",
+            "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+        )
+        run_flow(
+            f"data/extreme-{i}.db",
+            f"Extreme Network Condition Trial {i}",
+            "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+        )
+
+
+if __name__ == "__main__":
+    num_of_trials = 6
+    # plot_all(num_of_trials) Plot all is Kinda buggy right now
+    plot_trial(num_of_trials)
