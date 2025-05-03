@@ -223,9 +223,9 @@ def plot_all(num_of_trials):
     lbit_arr, hbit_arr, ebit_arr = [], [], []
 
     for i in range(1, num_of_trials + 1):
-        lbit, lstall = split_df(load_db(f"data/low-{i}.db"))
-        hbit, hstall = split_df(load_db(f"data/high-{i}.db"))
-        ebit, estall = split_df(load_db(f"data/extreme-{i}.db"))
+        lstall, lbit = split_df(load_db(f"data/low-{i}.db"))
+        hstall, hbit = split_df(load_db(f"data/high-{i}.db"))
+        estall, ebit = split_df(load_db(f"data/extreme-{i}.db"))
 
         if validate_df(lstall):
             lstall_arr.append(lstall)
@@ -285,6 +285,8 @@ def plot_all(num_of_trials):
     high_bit_df = pd.concat(hbit_arr)
     extreme_bit_df = pd.concat(ebit_arr)
 
+    print(low_bit_df)
+
     sub_plot_bitrate(
         low_bit_df,
         "Low Network Condition Summary",
@@ -343,5 +345,5 @@ def plot_trial(num_of_trials):
 
 if __name__ == "__main__":
     num_of_trials = 6
-    # plot_all(num_of_trials) Plot all is Kinda buggy right now
+    plot_all(num_of_trials)  # Plot all is Kinda buggy right now
     plot_trial(num_of_trials)
