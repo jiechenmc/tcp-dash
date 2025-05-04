@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import sys
 
 index_bitrate_map = {
     1: 72,
@@ -172,7 +173,7 @@ def run_flow(db_name, title, subtitle):
     stallrate_df, bitrate_df = split_df(df, title)
     xlabel = "Adaptive Bitrate Algorithm (ABR)"
 
-    print(title)
+    # print(title)
     plot(
         bitrate_df,
         f"{title} Bitrate",
@@ -233,8 +234,9 @@ def plot_all(num_of_trials):
             counts = lstall.groupby(["cc", "abr"])["http"].nunique()
             print(
                 f"Low Network Trial {i} Stall Data Missing\n{counts[counts != 3]}",
+                file=sys.stderr,
             )
-            print()
+            print(file=sys.stderr)
 
         if validate_df(hstall):
             hstall_arr.append(hstall)
@@ -242,40 +244,45 @@ def plot_all(num_of_trials):
             counts = hstall.groupby(["cc", "abr"])["http"].nunique()
             print(
                 f"High Network Trial {i} Stall Data Missing\n{counts[counts != 3]}",
+                file=sys.stderr,
             )
-            print()
+            print(file=sys.stderr)
         if validate_df(estall):
             estall_arr.append(estall)
         else:
             counts = estall.groupby(["cc", "abr"])["http"].nunique()
             print(
                 f"Extreme Network Trial {i} Stall Data Missing\n{counts[counts != 3]}",
+                file=sys.stderr,
             )
-            print()
+            print(file=sys.stderr)
         if validate_df(lbit):
             lbit_arr.append(lbit)
         else:
             counts = lbit.groupby(["cc", "abr"])["http"].nunique()
             print(
                 f"Low Network Trial {i} Bitrate Data Missing\n{counts[counts != 3]}",
+                file=sys.stderr,
             )
-            print()
+            print(file=sys.stderr)
         if validate_df(hbit):
             hbit_arr.append(hbit)
         else:
             counts = hbit.groupby(["cc", "abr"])["http"].nunique()
             print(
                 f"High Network Trial {i} Bitrate Data Missing\n{counts[counts != 3]}",
+                file=sys.stderr,
             )
-            print()
+            print(file=sys.stderr)
         if validate_df(ebit):
             ebit_arr.append(ebit)
         else:
             counts = ebit.groupby(["cc", "abr"])["http"].nunique()
             print(
                 f"Extreme Network Trial {i} Bitrate Data Missing\n{counts[counts != 3]}",
+                file=sys.stderr,
             )
-            print()
+            print(file=sys.stderr)
 
     low_stall_df = pd.concat(lstall_arr)
     high_stall_df = pd.concat(hstall_arr)
@@ -285,7 +292,28 @@ def plot_all(num_of_trials):
     high_bit_df = pd.concat(hbit_arr)
     extreme_bit_df = pd.concat(ebit_arr)
 
-    print(low_bit_df)
+    low_bit_df.groupby(["http", "cc", "abr"])["metricValue"].mean(
+        numeric_only=True
+    ).to_csv("data/sheets/low-bitrate-summary.csv")
+
+    high_bit_df.groupby(["http", "cc", "abr"])["metricValue"].mean(
+        numeric_only=True
+    ).to_csv("data/sheets/high-bitrate-summary.csv")
+    extreme_bit_df.groupby(["http", "cc", "abr"])["metricValue"].mean(
+        numeric_only=True
+    ).to_csv("data/sheets/extreme-bitrate-summary.csv")
+
+    low_stall_df.groupby(["http", "cc", "abr"])["metricValue"].mean(
+        numeric_only=True
+    ).to_csv("data/sheets/low-stallrate-summary.csv")
+    high_stall_df.groupby(["http", "cc", "abr"])["metricValue"].mean(
+        numeric_only=True
+    ).to_csv("data/sheets/high-stallrate-summary.csv")
+    extreme_stall_df.groupby(["http", "cc", "abr"])["metricValue"].mean(
+        numeric_only=True
+    ).to_csv("data/sheets/extreme-stallrate-summary.csv")
+
+    # print(low_bit_df)
 
     sub_plot_bitrate(
         low_bit_df,
