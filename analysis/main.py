@@ -324,13 +324,13 @@ def plot_all(num_of_trials):
     sub_plot_bitrate(
         high_bit_df,
         "High Network Condition Summary",
-        "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+        "100ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
     )
 
     sub_plot_bitrate(
         extreme_bit_df,
         "Extreme Network Condition Summary",
-        "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+        "200ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
     )
 
     sub_plot_stall(
@@ -342,13 +342,13 @@ def plot_all(num_of_trials):
     sub_plot_stall(
         high_stall_df,
         "High Network Condition Summary",
-        "20ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
+        "100ms RTT, 1% Packet Loss, 10Mbps Bandwidth",
     )
 
     sub_plot_stall(
         extreme_stall_df,
         "Extreme Network Condition Summary",
-        "20ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
+        "200ms RTT, 2% Packet Loss, 10Mbps Bandwidth",
     )
 
 
