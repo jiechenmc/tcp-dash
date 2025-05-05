@@ -78,7 +78,8 @@ def split_df(df, title=None):
     bitrate_df["metricValue"] = np.floor(bitrate_df["metricValue"]).astype(float)
     bitrate_df["metricValue"] = bitrate_df["metricValue"].map(index_bitrate_map)
 
-    bitrate_df.to_csv(f"data/sheets/trails/{title}.csv", index=False)
+    bitrate_df.to_csv(f"data/sheets/trials/bitrate-{title}.csv", index=False)
+    stallrate_df.to_csv(f"data/sheets/trials/stallrate-{title}.csv", index=False)
     # print(bitrate_df)
 
     # Map index to actual bitrate
@@ -180,7 +181,7 @@ def run_flow(db_name, title, subtitle):
         subtitle,
         xlabel,
         "Mean Bitrate (kbps)",
-        f"plots/trial/bitrate-{title}",
+        f"plots/trials/bitrate-{title}",
     )
     plot(
         stallrate_df,
@@ -188,7 +189,7 @@ def run_flow(db_name, title, subtitle):
         subtitle,
         xlabel,
         "Mean Stall Rate (%)",
-        f"plots/trial/stallrate-{title}",
+        f"plots/trials/stallrate-{title}",
     )
 
 
@@ -284,6 +285,8 @@ def plot_all(num_of_trials):
             )
             print(file=sys.stderr)
 
+    print("All incomplete data are excluded from summary.")
+
     low_stall_df = pd.concat(lstall_arr)
     high_stall_df = pd.concat(hstall_arr)
     extreme_stall_df = pd.concat(estall_arr)
@@ -373,5 +376,5 @@ def plot_trial(num_of_trials):
 
 if __name__ == "__main__":
     num_of_trials = 6
-    plot_all(num_of_trials)  # Plot all is Kinda buggy right now
+    plot_all(num_of_trials)
     plot_trial(num_of_trials)
