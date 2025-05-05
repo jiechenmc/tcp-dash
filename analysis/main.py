@@ -180,7 +180,7 @@ def run_flow(db_name, title, subtitle):
         subtitle,
         xlabel,
         "Mean Bitrate (kbps)",
-        f"plots/bitrate-{title}",
+        f"plots/trial/bitrate-{title}",
     )
     plot(
         stallrate_df,
@@ -188,7 +188,7 @@ def run_flow(db_name, title, subtitle):
         subtitle,
         xlabel,
         "Mean Stall Rate (%)",
-        f"plots/stallrate-{title}",
+        f"plots/trial/stallrate-{title}",
     )
 
 
