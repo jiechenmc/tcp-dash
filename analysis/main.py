@@ -78,7 +78,7 @@ def split_df(df, title=None):
     bitrate_df["metricValue"] = np.floor(bitrate_df["metricValue"]).astype(float)
     bitrate_df["metricValue"] = bitrate_df["metricValue"].map(index_bitrate_map)
 
-    bitrate_df.to_csv(f"data/sheets/{title}.csv", index=False)
+    bitrate_df.to_csv(f"data/sheets/trails/{title}.csv", index=False)
     # print(bitrate_df)
 
     # Map index to actual bitrate
